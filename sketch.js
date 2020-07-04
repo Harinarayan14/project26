@@ -23,6 +23,8 @@ var redWin1 = $("#one.red, #two.red, #three.red").length === 3
   var redWin6 = $("#three.red, #six.red, #nine.red").length === 3
   var redWin7 = $("#one.red, #five.red, #nine.red").length === 3
   var redWin8 = $("#seven.red, #five.red, #three.red").length === 3
+  var player1Score=0
+  var player2Score=0
 //var winningCombos = [x]
   //refactor below too... not DRY at all!!!
   //note: playerOne is always blue
@@ -37,6 +39,7 @@ var redCount = getRedCount()
 var draw = (fullGrid === 9) && (!blueWins) && (!redWins)
 if (blueWins) { //playerOne is always blue
     winner = blueWins
+  player1Score++;
     console.log(`${playerOne} wins!`)
     $("#gameResult, #congratsOrSorry").removeClass("displayNone")
     $("#gameResult").html(`<span class='yellowBig'>${playerOne} wins!</span>`)
@@ -47,6 +50,7 @@ if (blueWins) { //playerOne is always blue
   }
   if (redWins) { //red is computer
     winner = redWins
+  player2Score++;
     console.log(`${computer} wins!`)
     $("#gameResult, #congratsOrSorry").removeClass("displayNone")
     $("#gameResult").html(`<span class='redBig'>${computer} wins!</span>`)
@@ -67,4 +71,9 @@ if (blueWins) { //playerOne is always blue
   } else {
     console.log('game on...')
   }
+}
+
+function draw(){
+      text("Player-1:"+player1Score,400,400);
+      text("Player-2:"+player2Score,400,500);
 }
